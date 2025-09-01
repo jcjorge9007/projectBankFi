@@ -44,16 +44,16 @@ const MenuNav: React.FC = () => {
             <li className="relative group">
               <button className="px-2 py-1">Loans</button>
               <ul className="absolute hidden group-hover:block bg-white border shadow-md py-2 rounded z-10">
-                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/reporteUsuarios">Lending</Link></li>
-                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/reporteComentarios">Borrowing</Link></li>
+                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/loans">Lending</Link></li>
+                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/loans">Borrowing</Link></li>
               </ul>
             </li>
 
             <li className="relative group">
               <button className="px-2 py-1">Stake</button>
               <ul className="absolute hidden group-hover:block bg-white border shadow-md py-2 rounded z-10">
-                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/atraccionesCaribe">Ethereum</Link></li>
-                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/atraccionesPacifico">Solana</Link></li>
+                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/stake">Ethereum</Link></li>
+                <li className="block px-4 py-2 hover:bg-gray-100"><Link href="/stake">Solana</Link></li>
               </ul>
             </li>
           </ul>
@@ -79,7 +79,7 @@ const MenuNav: React.FC = () => {
                 className="w-full text-left"
                 onClick={() => setIsReportOpen(!isReportOpen)}
               >
-                 {isReportOpen ? '▲' : '▼'}
+                {isReportOpen ? '▲' : '▼'}
               </button>
 
               {isReportOpen && (
@@ -126,21 +126,24 @@ const MenuNav: React.FC = () => {
             {/* Opciones */}
             <ul className="my-4 space-y-3">
               {[
-                { name: 'MetaMask', badge: 'Popular' },
-                { name: 'Coinbase Wallet' },
-                { name: 'Opera Wallet' },
-                { name: 'WalletConnect' },
-                { name: 'Fortmatic' },
+                { name: 'MetaMask', badge: 'Popular', icon: '/metamaskLogo.png' },
+                { name: 'Coinbase Wallet', icon: '/cpoinbaseLogo.png' },
+                { name: 'Exodus', icon: '/exodusLogo.png' },
+                { name: 'Phantom', icon: '/phantomLogo.png' },
+                { name: 'Rabby', icon: '/rabbyLogo.png' },
               ].map((w) => (
                 <li key={w.name}>
                   <button
                     className="w-full text-left flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                    onClick={() => {
-                      // aquí iría la lógica de conexión
-                      setWalletOpen(false);
-                    }}
+                    onClick={() => setWalletOpen(false)}
                   >
+                    {/* Imagen */}
+                    {w.icon && (
+                      <img src={w.icon} alt={w.name} className="h-6 w-6" />
+                    )}
+
                     <span className="flex-1 ms-3 whitespace-nowrap">{w.name}</span>
+
                     {w.badge && (
                       <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded-sm dark:bg-gray-700 dark:text-gray-400">
                         {w.badge}
